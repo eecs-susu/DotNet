@@ -1,26 +1,12 @@
 ﻿namespace TankConstruction.Models
 {
-    public abstract class Engine : IDestroyable
+    public class Engine : TankComponent
     {
-        protected Engine(uint power, uint maxHealth)
+        public Engine(uint health, uint weight, string serialNumber, uint power) : base(health, weight, serialNumber)
         {
             Power = power;
-            MaxHealth = maxHealth;
-            Health = maxHealth;
         }
 
         public uint Power { get; }
-        public uint MaxHealth { get; }
-        public uint Health { get; private set; }
-
-        public void TakeDamage(uint damage)
-        {
-            Health = damage > Health ? 0 : Health - damage;
-        }
-
-        public bool IsDestroyed()
-        {
-            return Health == 0;
-        }
     }
 }

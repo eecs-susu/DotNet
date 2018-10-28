@@ -2,20 +2,24 @@
 
 namespace TankConstruction.Models
 {
-    internal abstract class Gun : IDestroyable
+    public class Gun : TankComponent
     {
         private double _accuracy;
 
-        protected Gun(uint maxHealth)
+
+        public Gun(uint health, uint weight, string serialNumber, uint power, double accuracy = 1) : base(health,
+            weight,
+            serialNumber)
         {
-            MaxHealth = maxHealth;
-            Health = maxHealth;
+            Power = power;
+            Accuracy = accuracy;
         }
 
-        public double Accuracy
+
+        private double Accuracy
         {
             get => _accuracy;
-            private set
+            set
             {
                 if (Accuracy < 0 || Accuracy > 1) throw new ArgumentException("Accuracy should be in range [0, 1]");
 
@@ -23,18 +27,11 @@ namespace TankConstruction.Models
             }
         }
 
-        public uint MaxHealth { get; }
+        private uint Power { get; }
 
-        public uint Health { get; private set; }
-
-        public void TakeDamage(uint damage)
+        public uint Shoot()
         {
-            Health = damage > Health ? 0 : Health - damage;
-        }
-
-        public bool IsDestroyed()
-        {
-            return Health == 0;
+            return new Random().NextDouble() <= _accuracy ? Power : 0;
         }
     }
 }

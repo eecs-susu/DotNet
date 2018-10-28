@@ -2,9 +2,8 @@
 {
     public interface IDestroyable
     {
-        uint MaxHealth { get; }
         uint Health { get; }
-        void TakeDamage(uint damage);
+        uint TakeDamage(uint damage);
         bool IsDestroyed();
     }
 }

@@ -2,6 +2,6 @@
 {
     public interface IMovable
     {
-        Engine Engine { get; set; }
+        uint Move();
     }
 }

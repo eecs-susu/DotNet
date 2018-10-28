@@ -1,26 +1,13 @@
-﻿using System;
-
 namespace TankConstruction.Models
 {
-    public abstract class Track : IDestroyable
+    public class Track : TankComponent
     {
-        protected Track(uint maxHealth)
+        public Track(uint health, uint weight, string serialNumber, uint weightLimit) : base(health, weight,
+            serialNumber)
         {
-            MaxHealth = maxHealth;
-            Health = maxHealth;
+            WeightLimit = weightLimit;
         }
 
-        public uint MaxHealth { get; }
-        public uint Health { get; private set; }
-
-        public void TakeDamage(uint damage)
-        {
-            Health = damage > Health ? 0 : Health - damage;
-        }
-
-        public bool IsDestroyed()
-        {
-            return Health == 0;
-        }
+        public uint WeightLimit { get; }
     }
 }
