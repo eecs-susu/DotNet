@@ -16,7 +16,7 @@ namespace TankConstruction.Tests
         public void BeDestoyedOnFullHealthDamage()
         {
             var tank = new TankEntity();
-            
+
             tank.TakeDamage(tank.Health);
 
             Assert.True(tank.IsDestroyed());
