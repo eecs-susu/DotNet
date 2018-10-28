@@ -1,6 +1,6 @@
 ﻿namespace TankConstruction.Models
 {
-    internal interface IDestroyable
+    public interface IDestroyable
     {
         uint MaxHealth { get; }
         uint Health { get; }

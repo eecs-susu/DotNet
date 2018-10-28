@@ -1,6 +1,6 @@
 ﻿namespace TankConstruction.Models
 {
-    internal interface IMovable
+    public interface IMovable
     {
         Engine Engine { get; set; }
     }

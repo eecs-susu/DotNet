@@ -2,7 +2,7 @@
 
 namespace TankConstruction.Models
 {
-    internal abstract class Track : IDestroyable
+    public abstract class Track : IDestroyable
     {
         protected Track(uint maxHealth)
         {

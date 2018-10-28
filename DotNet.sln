@@ -5,6 +5,13 @@ VisualStudioVersion = 15.0.28010.2046
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TankConstruction", "TankConstruction\TankConstruction.csproj", "{2408F29D-CEC0-459E-8118-79C88B0631D3}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BCA9F271-C944-42F5-87BB-A2CA6399C55F}"
+	ProjectSection(SolutionItems) = preProject
+		.travis.yml = .travis.yml
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TankConstruction.Tests", "TankConstruction.Tests\TankConstruction.Tests.csproj", "{F441918B-6C8C-47FC-B439-221B20AB65FF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +22,10 @@ Global
 		{2408F29D-CEC0-459E-8118-79C88B0631D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2408F29D-CEC0-459E-8118-79C88B0631D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2408F29D-CEC0-459E-8118-79C88B0631D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F441918B-6C8C-47FC-B439-221B20AB65FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F441918B-6C8C-47FC-B439-221B20AB65FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F441918B-6C8C-47FC-B439-221B20AB65FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F441918B-6C8C-47FC-B439-221B20AB65FF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

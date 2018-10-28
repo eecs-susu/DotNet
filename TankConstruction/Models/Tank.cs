@@ -1,8 +1,10 @@
-﻿namespace TankConstruction.Models
+﻿using TankConstruction.Models;
+
+namespace TankConstruction.Models
 {
-    internal abstract class Tank : IMovable, IDestroyable
+    public abstract class Tank : IMovable, IDestroyable
     {
-        internal Tank(uint maxHealth)
+        public Tank(uint maxHealth)
         {
             MaxHealth = maxHealth;
             Health = maxHealth;

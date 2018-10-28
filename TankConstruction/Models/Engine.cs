@@ -1,6 +1,6 @@
 ﻿namespace TankConstruction.Models
 {
-    internal abstract class Engine : IDestroyable
+    public abstract class Engine : IDestroyable
     {
         protected Engine(uint power, uint maxHealth)
         {
