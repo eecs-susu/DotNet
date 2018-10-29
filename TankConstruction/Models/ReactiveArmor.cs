@@ -2,39 +2,35 @@ using System;
 
 namespace TankConstruction.Models
 {
-    public class ReactiveArmor : Armor
+    public abstract class ReactiveArmor : Armor
     {
-        private float _reactiveFactor;
+        private readonly double _absorbedRatio;
 
-        public ReactiveArmor(uint health, uint weight, string serialNumber, float reactiveFactor) : base(health, weight,
-            serialNumber)
+        protected ReactiveArmor(string serialNumber, uint healthPoints, double absorbedRatio) : base(serialNumber,
+            healthPoints)
         {
-            ReactiveFactor = reactiveFactor;
-        }
-
-        private float ReactiveFactor
-        {
-            get => _reactiveFactor;
-            set
+            if (absorbedRatio < 0)
             {
-                if (_reactiveFactor < 0 || _reactiveFactor > 1)
-                    throw new ArgumentException("Reactive factor must be in range [0, 1]");
-
-                _reactiveFactor = value;
-            }
-        }
-
-        public new uint TakeDamage(uint damage)
-        {
-            var reactiveDamage = (uint) _reactiveFactor * damage;
-            if (reactiveDamage <= Health)
-            {
-                Health -= reactiveDamage;
-                return damage;
+                throw new ArgumentException($"{absorbedRatio} can't be less than 0");
             }
 
-            Health -= Health;
-            return Health;
+            if (absorbedRatio > 1)
+            {
+                throw new ArgumentException($"{absorbedRatio} can't be greater than 1");
+            }
+
+            _absorbedRatio = absorbedRatio;
+        }
+
+        public override void TakeDamage(uint power)
+        {
+            power -= (uint) (power * _absorbedRatio);
+            HealthPoints -= Math.Min(HealthPoints, power);
+        }
+
+        public override string ToString()
+        {
+            return $"Type: Reactive {base.ToString()}";
         }
     }
 }

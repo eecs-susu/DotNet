@@ -1,34 +1,29 @@
+using System;
+
 namespace TankConstruction.Models
 {
-    public class CompositeArmor : Armor
+    public abstract class CompositeArmor : Armor
     {
-        public CompositeArmor(uint health, uint weight, string serialNumber, uint compositeFactor) : base(health,
-            weight, serialNumber)
+        private uint Armor { get; set; }
+
+
+        public override void TakeDamage(uint power)
         {
-            CompositeFactor = compositeFactor;
+            var absorbedDamage = Math.Min(Armor, power);
+
+            Armor -= absorbedDamage;
+
+            HealthPoints -= Math.Min(HealthPoints, power - absorbedDamage);
         }
 
-        private uint CompositeFactor { get; }
-
-        public new uint TakeDamage(uint damage)
+        protected CompositeArmor(string serialNumber, uint healthPoints, uint armor) : base(serialNumber, healthPoints)
         {
-            var compositeDamage = damage;
-            if (CompositeFactor > damage)
-            {
-                compositeDamage = 0;
-                return damage;
-            }
+            Armor = armor;
+        }
 
-            compositeDamage -= CompositeFactor;
-
-            if (compositeDamage <= Health)
-            {
-                Health -= compositeDamage;
-                return damage;
-            }
-
-            Health -= Health;
-            return Health;
+        public override string ToString()
+        {
+            return $"Type: Composite {base.ToString()}";
         }
     }
 }

@@ -1,88 +1,46 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
+using System;
 
 namespace TankConstruction.Models
 {
-    public class Tank : IShootable, IMovable, IDestroyable, IWeightable
+    public class Tank : IMovable, IShootable, IDamageable
     {
-        private Engine Engine { get; set; }
-        private Gun Gun { get; set; }
-        private Armor Armor { get; set; }
-        private Track Track { get; set; }
-        public uint Health => IterateOverComponents().Aggregate(0u, (r, e) => r + e.Health);
+        private readonly Armor _armor;
+        private readonly Engine _engine;
+        private readonly Gun _gun;
 
-        public uint TakeDamage(uint damage)
+        public Tank(Armor armor, Engine engine, Gun gun)
         {
-            uint activeDamage = 0;
-            activeDamage += Armor?.TakeDamage(damage - activeDamage) ?? 0;
-            activeDamage += Track?.TakeDamage(damage - activeDamage) ?? 0;
-            activeDamage += Engine?.TakeDamage(damage - activeDamage) ?? 0;
-            activeDamage += Gun?.TakeDamage(damage - activeDamage) ?? 0;
-            return activeDamage;
+            _armor = armor;
+            _engine = engine;
+            _gun = gun;
         }
 
-
-        public bool IsDestroyed()
-        {
-            return Health == 0;
-        }
 
         public uint Move()
         {
-            throw new NotImplementedException();
+            return _engine.Move();
         }
 
-
-        public void Shoot(IDestroyable target)
+        public uint Shoot()
         {
-            target.TakeDamage(Gun?.Shoot() ?? 0);
+            return _gun.Shoot();
         }
 
-        public uint Weight
+        public uint HealthPoints => _armor.HealthPoints;
+
+        public void TakeDamage(uint power)
         {
-            get { return IterateOverComponents().Aggregate(0u, (r, e) => e?.Weight ?? 0); }
+            _armor.TakeDamage(power);
         }
 
-        private IEnumerable<TankComponent> IterateOverComponents()
+        public bool IsDestroyed()
         {
-            return from prop in GetType().GetProperties(BindingFlags.NonPublic | BindingFlags.Instance)
-                where prop.GetValue(this) is TankComponent
-                select prop.GetValue(this) as TankComponent;
+            return _armor.IsDestroyed();
         }
 
-        private void CheckInstallationPossibility(IWeightable weightable)
+        public override string ToString()
         {
-            if (!(weightable is Track) && Track == null) throw new Exception("You have to install track at first");
-
-            if (weightable.Weight + Weight > Track.WeightLimit)
-                throw new Exception("You can't install this component, because tank's track will be over weighted");
-        }
-
-        public void InstallComponent(TankComponent component)
-        {
-            CheckInstallationPossibility(component);
-            switch (component)
-            {
-                case Track track:
-                    Engine = null;
-                    Gun = null;
-                    Armor = null;
-                    Track = track;
-                    break;
-                case Gun gun:
-                    Gun = gun;
-                    break;
-                case Engine engine:
-                    Engine = engine;
-                    break;
-                case Armor armor:
-                    Armor = armor;
-                    break;
-                default:
-                    throw new Exception("Unable to install this component");
-            }
+            return $"Tank\nHP: {HealthPoints}\nArmor: {_armor}\nEngine: {_engine}\nGun: {_gun}";
         }
     }
 }

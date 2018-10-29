@@ -1,12 +1,11 @@
-﻿namespace TankConstruction.Models
+namespace TankConstruction.Models
 {
-    public class Engine : TankComponent
-    {
-        public Engine(uint health, uint weight, string serialNumber, uint power) : base(health, weight, serialNumber)
+    public abstract class Engine : TankComponent, IMovable
+    {      
+        protected Engine(string serialNumber) : base(serialNumber)
         {
-            Power = power;
         }
 
-        public uint Power { get; }
+        public abstract uint Move();
     }
 }

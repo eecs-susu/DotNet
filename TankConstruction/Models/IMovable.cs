@@ -1,4 +1,4 @@
-﻿namespace TankConstruction.Models
+namespace TankConstruction.Models
 {
     public interface IMovable
     {
