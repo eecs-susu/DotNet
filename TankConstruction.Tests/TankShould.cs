@@ -5,17 +5,10 @@ namespace TankConstruction.Tests
 {
     public class TankShould
     {
-        private class TankEntity : Tank
-        {
-            public TankEntity() : base(100)
-            {
-            }
-        }
-
         [Fact]
-        public void BeDestoyedOnFullHealthDamage()
+        public void BeDestroyedOnFullHealthDamage()
         {
-            var tank = new TankEntity();
+            var tank = new Tank();
 
             tank.TakeDamage(tank.Health);
 
