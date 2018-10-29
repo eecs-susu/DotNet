@@ -1,8 +1,7 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 
-namespace TankConstruction.Models
+namespace TankConstruction.Models.SovietUnion
 {
     public class SovietUnionBaseFactory
     {
@@ -12,6 +11,7 @@ namespace TankConstruction.Models
             {
                 yield return create($"СССР-{i}");
             }
+            // ReSharper disable once IteratorNeverReturns
         }
     }
 }

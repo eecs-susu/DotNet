@@ -1,6 +1,6 @@
 using System;
 
-namespace TankConstruction.Models
+namespace TankConstruction.Models.Base
 {
     public abstract class Armor : TankComponent, IDamageable
     {

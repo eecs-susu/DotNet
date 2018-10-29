@@ -1,4 +1,4 @@
-namespace TankConstruction.Models
+namespace TankConstruction.Models.Base
 {
     public abstract class Engine : TankComponent, IMovable
     {      

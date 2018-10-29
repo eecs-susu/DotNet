@@ -1,6 +1,7 @@
 using System.Collections.Generic;
+using TankConstruction.Models.Base;
 
-namespace TankConstruction.Models
+namespace TankConstruction.Models.SovietUnion
 {
     public class SovietUnionTankComponentFactory : SovietUnionBaseFactory, ITankComponentFactory
     {

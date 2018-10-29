@@ -1,6 +1,4 @@
-using System;
-
-namespace TankConstruction.Models
+namespace TankConstruction.Models.Base
 {
     public class Tank : IMovable, IShootable, IDamageable
     {
@@ -14,7 +12,7 @@ namespace TankConstruction.Models
             _engine = engine;
             _gun = gun;
         }
-
+        
 
         public uint Move()
         {

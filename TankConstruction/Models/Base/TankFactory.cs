@@ -1,4 +1,6 @@
-namespace TankConstruction.Models
+using TankConstruction.Models.SovietUnion;
+
+namespace TankConstruction.Models.Base
 {
     public abstract class TankFactory
     {
@@ -13,21 +15,21 @@ namespace TankConstruction.Models
 
         public Tank CreateLightTank()
         {
-            return new SovietUnionTank(_armorFactory.CreateArmor(),
+            return new Tank(_armorFactory.CreateArmor(),
                 _componentFactory.CreateEngine(),
                 _componentFactory.CreateGun());
         }
 
         public Tank CreateCompositeTank()
         {
-            return new SovietUnionTank(_armorFactory.CreateCompositeArmor(),
+            return new Tank(_armorFactory.CreateCompositeArmor(),
                 _componentFactory.CreateEngine(),
                 _componentFactory.CreateGun());
         }
 
         public Tank CreateReactiveTank()
         {
-            return new SovietUnionTank(_armorFactory.CreateReactiveArmor(),
+            return new Tank(_armorFactory.CreateReactiveArmor(),
                 _componentFactory.CreateEngine(),
                 _componentFactory.CreateGun());
         }

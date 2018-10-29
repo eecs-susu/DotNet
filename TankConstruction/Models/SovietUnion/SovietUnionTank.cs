@@ -1,4 +1,6 @@
-namespace TankConstruction.Models
+using TankConstruction.Models.Base;
+
+namespace TankConstruction.Models.SovietUnion
 {
     public class SovietUnionTank : Tank
     {
