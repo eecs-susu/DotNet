@@ -1,44 +1,56 @@
+using System;
+using System.Collections.Generic;
+
 namespace TankConstruction.Models.Base
 {
-    public class Tank : IMovable, IShootable, IDamageable
+    public abstract class Tank : IMovable, IShootable, IDamageable
     {
-        private readonly Armor _armor;
-        private readonly Engine _engine;
-        private readonly Gun _gun;
+        public readonly Armor Armor;
+        protected readonly Engine Engine;
+        protected readonly Gun Gun;
 
-        public Tank(Armor armor, Engine engine, Gun gun)
+        
+        protected Tank(Armor armor, Engine engine, Gun gun)
         {
-            _armor = armor;
-            _engine = engine;
-            _gun = gun;
+            Armor = armor;
+            Engine = engine;
+            Gun = gun;
         }
         
 
         public uint Move()
         {
-            return _engine.Move();
+            return Engine.Move();
         }
 
         public uint Shoot()
         {
-            return _gun.Shoot();
+            return Gun.Shoot();
         }
 
-        public uint HealthPoints => _armor.HealthPoints;
+        public uint Shoot(IDamageable damageable)
+        {
+            var damage = Shoot();
+            damageable.TakeDamage(damage);
+            return damage;
+        }
+
+        public uint HealthPoints => Armor.HealthPoints;
 
         public void TakeDamage(uint power)
         {
-            _armor.TakeDamage(power);
+            Armor.TakeDamage(power);
         }
 
         public bool IsDestroyed()
         {
-            return _armor.IsDestroyed();
+            return Armor.IsDestroyed();
         }
-
+        
         public override string ToString()
         {
-            return $"Tank\nHP: {HealthPoints}\nArmor: {_armor}\nEngine: {_engine}\nGun: {_gun}";
+            return $"Tank\nHP: {HealthPoints}\nArmor: {Armor}\nEngine: {Engine}\nGun: {Gun}";
         }
+
     }
 }

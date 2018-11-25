@@ -4,8 +4,8 @@ namespace TankConstruction.Models.Base
 {
     public abstract class TankFactory
     {
-        private readonly ITankComponentFactory _componentFactory;
-        private readonly IArmorFactory _armorFactory;
+        protected readonly ITankComponentFactory _componentFactory;
+        protected readonly IArmorFactory _armorFactory;
 
         protected TankFactory(ITankComponentFactory componentFactory)
         {
@@ -13,25 +13,10 @@ namespace TankConstruction.Models.Base
             _armorFactory = componentFactory.CreateArmorFactory();
         }
 
-        public Tank CreateLightTank()
-        {
-            return new Tank(_armorFactory.CreateArmor(),
-                _componentFactory.CreateEngine(),
-                _componentFactory.CreateGun());
-        }
+        public abstract Tank CreateLightTank();
 
-        public Tank CreateCompositeTank()
-        {
-            return new Tank(_armorFactory.CreateCompositeArmor(),
-                _componentFactory.CreateEngine(),
-                _componentFactory.CreateGun());
-        }
+        public abstract Tank CreateCompositeTank();
 
-        public Tank CreateReactiveTank()
-        {
-            return new Tank(_armorFactory.CreateReactiveArmor(),
-                _componentFactory.CreateEngine(),
-                _componentFactory.CreateGun());
-        }
+        public abstract Tank CreateReactiveTank();
     }
 }

@@ -4,7 +4,7 @@ namespace TankConstruction.Models.SovietUnion
 {
     public class SovietUnionCompositeArmor : CompositeArmor
     {
-        public SovietUnionCompositeArmor(string serialNumber) : base(serialNumber, 100, 200)
+        public SovietUnionCompositeArmor(string serialNumber, uint armor=100) : base(serialNumber, armor, 200)
         {
         }
     }

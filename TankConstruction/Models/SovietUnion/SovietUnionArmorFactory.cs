@@ -11,9 +11,9 @@ namespace TankConstruction.Models.SovietUnion
 
         public SovietUnionArmorFactory()
         {
-            _armorConveyor = CreateConveyor(serialNumber => new SovietUnionArmor(serialNumber));
-            _compositeArmorConveyor = CreateConveyor(serialNumber => new SovietUnionCompositeArmor(serialNumber));
-            _reactiveArmorConveyor = CreateConveyor(serialNumber => new SovietUnionReactiveArmor(serialNumber));
+            _armorConveyor = CreateConveyor(serialNumber => new SovietUnionArmor(serialNumber, 100));
+            _compositeArmorConveyor = CreateConveyor(serialNumber => new SovietUnionCompositeArmor(serialNumber, 200));
+            _reactiveArmorConveyor = CreateConveyor(serialNumber => new SovietUnionReactiveArmor(serialNumber, 300));
         }
 
         public Armor CreateArmor()

@@ -4,7 +4,7 @@ namespace TankConstruction.Models.SovietUnion
 {
     public class SovietUnionReactiveArmor : ReactiveArmor
     {
-        public SovietUnionReactiveArmor(string serialNumber) : base(serialNumber, 100, 0.1)
+        public SovietUnionReactiveArmor(string serialNumber, uint armor=100) : base(serialNumber, armor, 0.1)
         {
         }
     }
