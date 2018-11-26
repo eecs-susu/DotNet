@@ -9,12 +9,29 @@ namespace TankConstruction.Models.Base
         protected readonly Engine Engine;
         protected readonly Gun Gun;
 
+        public TankType Type; 
+
         
         protected Tank(Armor armor, Engine engine, Gun gun)
         {
             Armor = armor;
             Engine = engine;
             Gun = gun;
+            Type = GetTankType(armor);
+        }
+
+        private TankType GetTankType(Armor armor)
+        {
+            if (Armor is CompositeArmor)
+            {
+                return TankType.Composite;
+            }
+            if (Armor is ReactiveArmor)
+            {
+                return TankType.Reactive;
+            }
+
+            return TankType.Light;
         }
         
 
