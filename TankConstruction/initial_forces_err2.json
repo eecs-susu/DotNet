@@ -1,0 +1,22 @@
+{
+  "Armies" : [
+    {
+      "Side": "SovietUnion",
+      "Tanks": [
+        {
+          "Type": "Reactive"
+        }
+      ],
+      "RandomTanks": 0
+    },
+    {
+      "Side": "UnitedStates",
+      "Tanks": [
+        {
+          "Type": "ede"
+        }
+      ],
+      "RandomTanks": 2
+    }
+  ]
+}

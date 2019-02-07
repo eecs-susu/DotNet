@@ -1,0 +1,11 @@
+language: csharp
+solution: DotNet.sln
+mono: none
+dotnet: 2.1
+jobs:  
+  include:
+    - stage: "Tests"
+      name: "Tests check"
+      script:
+         - dotnet restore
+         - dotnet test TankConstruction.Tests -v n
